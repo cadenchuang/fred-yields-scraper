@@ -1,8 +1,12 @@
+import os
 import pandas as pd
 from fredapi import Fred
+from dotenv import load_dotenv
 
-# Your API key
-FRED_API_KEY = "insert-your-key-here"
+# Load keys from .env file
+load_dotenv()
+
+FRED_API_KEY = os.getenv("FRED_API_KEY")
 
 fred = Fred(api_key=FRED_API_KEY)
 
@@ -21,4 +25,5 @@ df.reset_index(inplace=True)
 df.to_csv("10yr_treasury_yield.csv", index=False)
 
 print("Saved 10yr_treasury_yield.csv")
+
 
